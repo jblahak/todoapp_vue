@@ -39,6 +39,8 @@ export default {
 <style lang="scss" scoped>
     div {
         border: 1px solid #cdcdcd;
+        width: calc((100% / 3) - 20px);
+        margin-bottom: 10px;
 
         header {
             box-sizing: border-box;
