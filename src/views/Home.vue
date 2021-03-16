@@ -4,7 +4,7 @@
     <section class="card-container">
       <card-todo
         class="card-todo"
-        v-for="todo in alltodos"
+        v-for="todo in todos"
         :todotext="todo.title"
         :username="JSON.stringify(todo.UserId)"
         :date="new Date(todo.updatedAt)"
@@ -17,7 +17,7 @@
 <script>
 import store from '@/store/index'
 import CardTodo from '../components/CardTodo.vue'
-import { mapGetters, mapState } from "vuex"
+import { mapActions, mapGetters, mapState } from "vuex"
 
 export default {
 
@@ -28,10 +28,15 @@ export default {
   store,
   computed: {
     ...mapGetters('todos', {
-      alltodos: 'allTodos'
+      todos: 'todos'
     })
   },
-  async created() {
+  methods: {
+    ...mapActions('todos', {
+      checkTodo: 'CHECK_TODO'
+    })
+  },
+  async mounted() {
     this.$store.dispatch('todos/GET_ALL_TODOS')
   }
 };

@@ -1,25 +1,28 @@
-const state = () => {
+import todos from '../../api/todos'
+
+const state = {
     todos: []
 }
 
 const getters = {
-    allTodos: (state) => {
-        return state.todos
+    todos: state => state.todos 
+}
+
+const actions = {
+    GET_ALL_TODOS: ({ commit }) => {
+        commit('getTodos')
+    },
+    CHECK_TODO: ({ commit }) => {
+        commit('toggleCompleteTodo')
     }
 }
 
 const mutations = {
     getTodos: async (state) => {
-        const data = await fetch('http://localhost:4443/api/todos');
-        const res = await data.json();
-
-        state.todos = await res;
-    }
-}
-
-const actions = {
-    GET_ALL_TODOS: (context) => {
-        context.commit('getTodos')
+        state.todos = await todos.getTodos(state)
+    },
+    toggleCompleteTodo: (state, id) => {
+        state.todo[id] = !state.todo[id]
     }
 }
 
