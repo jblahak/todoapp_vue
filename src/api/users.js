@@ -9,6 +9,6 @@ export default {
             body: JSON.stringify({email: user.email, password: user.password})
         });
         const res = await data.json();
-        return await res.token;
+        return await res;
     }
 }

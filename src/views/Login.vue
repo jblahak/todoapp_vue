@@ -10,6 +10,8 @@
 
 <script>
 import LoginForm from '../components/LoginForm'
+import store from '@/store/index'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
     data() {
@@ -17,8 +19,14 @@ export default {
         form: {
           password: '',
           email: ''
-        }
+        },
       }
+    },
+    store,
+    computed: {
+      ...mapGetters('users', {
+        logUser: 'logUser'
+      })
     },
     name: 'Login',
     components: {
