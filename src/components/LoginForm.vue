@@ -26,7 +26,12 @@
 </template>
 
 <script>
+import users from '../api/users'
+
 import store from '@/store/index'
+import Cookies from "js-cookie";
+
+import router from 'vue-router'
 
 export default {
     name: 'LoginForm',
@@ -42,11 +47,15 @@ export default {
         }
     },
     methods: {
-        login: function() {
-            this.$store.dispatch('users/LOGIN_USER', {
+        login: async function() {
+            const req = await users.loginUser({
                 email: this.mutableEmail,
                 password: this.mutablePassword
             })
+            await Cookies.set('token', req.token, {expires: 365})
+            if (req.status === 200) {
+                this.$router.push('/')
+            }
         }
     }
 }

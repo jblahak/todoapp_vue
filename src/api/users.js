@@ -1,5 +1,5 @@
 export default {
-    loginUser: async (state, user) => {
+    loginUser: async (user) => {
         const data = await fetch('http://localhost:4443/api/users/login', {
             method: 'POST',
             headers: {
