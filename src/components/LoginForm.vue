@@ -1,5 +1,5 @@
 <template>
-  <b-form class="col-8">
+  <b-form @submit.prevent="login" class="col-8">
     <b-form-group
         id="input-group-1"
         label="Email address:"
@@ -26,16 +26,27 @@
 </template>
 
 <script>
+import store from '@/store/index'
+
 export default {
     name: 'LoginForm',
     props: {
         email: String,
         password: String
     },
+    store,
     data() {
         return {
             mutableEmail: this.email,
             mutablePassword: this.password
+        }
+    },
+    methods: {
+        login: function() {
+            this.$store.dispatch('users/LOGIN_USER', {
+                email: this.mutableEmail,
+                password: this.mutablePassword
+            })
         }
     }
 }
