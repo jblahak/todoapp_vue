@@ -32,6 +32,7 @@ import store from '@/store/index'
 import Cookies from "js-cookie";
 
 import router from 'vue-router'
+import { mapActions } from 'vuex';
 
 export default {
     name: 'LoginForm',
@@ -53,6 +54,7 @@ export default {
                 password: this.mutablePassword
             })
             await Cookies.set('token', req.token, {expires: 365})
+            await this.$store.dispatch('users/STORE_TOKEN', req.token)
             if (req.status === 200) {
                 this.$router.push('/')
             }

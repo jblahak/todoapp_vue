@@ -12,7 +12,13 @@
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown right>
+            <b-nav-item-dropdown right v-if="user && token && token.isLogged">
+              <template #button-content>
+                <em>Hi, {{user.email}}</em>
+              </template>
+              <router-link class="dropdown-item" to="/login">logout</router-link>
+            </b-nav-item-dropdown>
+            <b-nav-item-dropdown right v-else>
               <template #button-content>
                 <em>Hi</em>
               </template>
@@ -26,6 +32,32 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import jwt from 'jsonwebtoken'
+import { mapGetters } from 'vuex'
+import users from './api/users'
+
+export default {
+  computed: {
+    ...mapGetters('users', {
+      token: 'token'
+    }),
+  },
+  asyncComputed: {
+    user () {
+      if (this.token && this.token.isLogged) {
+        const verifiedToken = jwt.verify(this.token.token, 'secret')
+        if (verifiedToken) {
+          const user = users.getUser(this.token.token)
+          return user
+        }
+      }
+    }
+  },
+  name: 'App'
+}
+</script>
 
 <style lang="scss">
 #app {
