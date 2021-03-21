@@ -37,8 +37,12 @@
 import jwt from 'jsonwebtoken'
 import { mapGetters } from 'vuex'
 import users from './api/users'
+import Cookies from 'js-cookie'
 
 export default {
+  data: () => ({
+    tokenAuth: null
+  }),
   computed: {
     ...mapGetters('users', {
       token: 'token'
@@ -53,6 +57,12 @@ export default {
           return user
         }
       }
+    }
+  },
+  mounted() {
+    const logCookie = Cookies.get('token')
+    if (logCookie) {
+      this.$store.dispatch('users/STORE_TOKEN', logCookie)
     }
   },
   name: 'App'
