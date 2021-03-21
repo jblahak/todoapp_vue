@@ -29,10 +29,16 @@
 import users from '../api/users'
 
 import store from '@/store/index'
+import jwt from 'jsonwebtoken'
 import Cookies from "js-cookie";
 
-import router from 'vue-router'
-import { mapActions } from 'vuex';
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+
+// import router from 'vue-router'
+// import { mapActions } from 'vuex';
+
+dayjs.extend(utc)
 
 export default {
     name: 'LoginForm',
@@ -53,7 +59,9 @@ export default {
                 email: this.mutableEmail,
                 password: this.mutablePassword
             })
-            await Cookies.set('token', req.token, {expires: 365})
+            const verifiedToken = await jwt.verify(req.token, 'secret')
+            const expToken = await dayjs.unix(verifiedToken.exp).format()
+            await Cookies.set('token', req.token, {expires: new Date(expToken)})
             await this.$store.dispatch('users/STORE_TOKEN', req.token)
             if (req.status === 200) {
                 this.$router.push('/')
