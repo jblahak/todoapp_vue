@@ -9,6 +9,8 @@
         :username="JSON.stringify(todo.UserId)"
         :date="new Date(todo.updatedAt)"
         :key="todo.id"
+        :completed="todo.completed"
+        @checked="checkTodo(todo)"
       />
     </section>
   </div>
@@ -32,9 +34,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('todos', {
-      checkTodo: 'CHECK_TODO'
-    })
+    checkTodo: function(todo) {this.$store.dispatch('todos/CHECK_TODO', todo)}
   },
   async mounted() {
     this.$store.dispatch('todos/GET_ALL_TODOS')

@@ -7,7 +7,8 @@
             <p>{{todotext}}</p>
         </main>
         <footer>
-            <button>Valider la todo</button>
+            <button v-if="completed === false" @click="checkTodo">Valider la todo</button>
+            <button v-else @click="checkTodo">Uncheck</button>
             <p>{{intlDate}}</p>
         </footer>
     </div>
@@ -23,6 +24,7 @@ export default {
   props: {
     username: String,
     todotext: String,
+    completed: Boolean,
     date: Date
   },
   computed: {
@@ -32,6 +34,11 @@ export default {
 
         return duration
       }
+  },
+  methods: {
+      checkTodo: function() {
+          this.$emit("checked")
+      } 
   }
 };
 </script>

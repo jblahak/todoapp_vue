@@ -12,8 +12,8 @@ const actions = {
     GET_ALL_TODOS: ({ commit }) => {
         commit('getTodos')
     },
-    CHECK_TODO: ({ commit }) => {
-        commit('toggleCompleteTodo')
+    CHECK_TODO: ({ commit }, id) => {
+        commit('toggleCompleteTodo', id)
     }
 }
 
@@ -21,8 +21,10 @@ const mutations = {
     getTodos: async (state) => {
         state.todos = await todos.getTodos(state)
     },
-    toggleCompleteTodo: (state, id) => {
-        state.todo[id] = !state.todo[id]
+    toggleCompleteTodo: async (state, selectedTodo) => {
+        const index = state.todos.findIndex( todo => todo.id === selectedTodo.id)
+        selectedTodo = await todos.checkTodo(selectedTodo)
+        state.todos.splice(index, 1, selectedTodo)
     }
 }
 

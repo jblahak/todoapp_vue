@@ -1,7 +1,22 @@
 export default {
-    getTodos: async (state) => {
+    getTodos: async (todo) => {
         const data = await fetch('http://localhost:4443/api/todos');
         const res = await data.json();
         return await res;
-    }
+    },
+    checkTodo: async (todo) => {
+        const data = await fetch('http://localhost:4443/api/todos/complete', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: todo.id,
+                completed: todo.completed
+            })
+        })
+        const res = await data.json()
+        return await res
+    } 
 }
