@@ -35,9 +35,6 @@ import Cookies from "js-cookie";
 import dayjs from "dayjs";
 import utc from 'dayjs/plugin/utc'
 
-// import router from 'vue-router'
-// import { mapActions } from 'vuex';
-
 dayjs.extend(utc)
 
 export default {
