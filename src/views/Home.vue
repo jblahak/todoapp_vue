@@ -6,7 +6,7 @@
         class="card-todo"
         v-for="todo in todos"
         :todotext="todo.title"
-        :username="JSON.stringify(todo.UserId)"
+        :username="todo.user.email"
         :date="new Date(todo.updatedAt)"
         :key="todo.id"
         :completed="todo.completed"
@@ -19,7 +19,7 @@
 <script>
 import store from '@/store/index'
 import CardTodo from '../components/CardTodo.vue'
-import { mapActions, mapGetters, mapState } from "vuex"
+import { mapGetters } from "vuex"
 
 export default {
 
@@ -37,7 +37,7 @@ export default {
     checkTodo: function(todo) {this.$store.dispatch('todos/CHECK_TODO', todo)}
   },
   async mounted() {
-    this.$store.dispatch('todos/GET_ALL_TODOS')
+    this.$store.dispatch('todos/GET_USER_BY_TODO')
   }
 };
 </script>

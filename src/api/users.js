@@ -21,5 +21,17 @@ export default {
         })
         const res = await data.json()
         return await res
+    },
+    getUserById: async (user) => {
+        const data = await fetch('http://localhost:4443/api/users/user/id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'id': user
+            }
+        })
+        const res = await data.json()
+        return await res
     }
 }

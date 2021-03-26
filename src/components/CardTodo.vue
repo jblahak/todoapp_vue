@@ -7,8 +7,8 @@
             <p>{{todotext}}</p>
         </main>
         <footer>
-            <button v-if="completed === false" @click="checkTodo">Valider la todo</button>
-            <button v-else @click="checkTodo">Uncheck</button>
+            <button class="btn btn-success" v-if="completed === false" @click="checkTodo">Valider la todo</button>
+            <button class="btn btn-danger" v-else @click="checkTodo">Uncheck</button>
             <p>{{intlDate}}</p>
         </footer>
     </div>
