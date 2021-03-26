@@ -2,11 +2,13 @@ import todos from '../../api/todos'
 import users from '../../api/users'
 
 const state = {
-    todos: []
+    todos: [],
+    show: false
 }
 
 const getters = {
-    todos: state => state.todos 
+    todos: state => state.todos,
+    show: state => state.show
 }
 
 const actions = {
@@ -32,11 +34,12 @@ const mutations = {
             const user = await users.getUserById(el.UserId)
             el.user = user
         }
+        state.show = true
     },
     toggleCompleteTodo: async (state, selectedTodo) => {
         const index = state.todos.findIndex( todo => todo.id === selectedTodo.id)
         selectedTodo = await todos.checkTodo(selectedTodo)
-        state.todos.splice(index, 1, selectedTodo)
+        state.todos.splice(index, 1, {...selectedTodo, user: await users.getUserById(selectedTodo.UserId)})
     }
 }
 

@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <section class="card-container">
+    <section class="container">
+      <todo-form
+        :todo="form"
+      ></todo-form>
+    </section>
+    <section v-if="show" class="card-container">
       <card-todo
         class="card-todo"
         v-for="todo in todos"
@@ -13,30 +18,41 @@
         @checked="checkTodo(todo)"
       />
     </section>
+    <section v-else class="card-container">
+      <p>Loading ...</p>
+    </section>
   </div>
 </template>
 
 <script>
 import store from '@/store/index'
 import CardTodo from '../components/CardTodo.vue'
+import TodoForm from '../components/TodoForm'
 import { mapGetters } from "vuex"
 
 export default {
 
   name: 'Home',
+  data() {
+    return{
+      form: '',
+    }
+  },
   components: {
     CardTodo,
+    TodoForm,
   },
   store,
   computed: {
     ...mapGetters('todos', {
-      todos: 'todos'
-    })
+      todos: 'todos',
+      show: 'show'
+    }),
   },
   methods: {
     checkTodo: function(todo) {this.$store.dispatch('todos/CHECK_TODO', todo)}
   },
-  async mounted() {
+  mounted() {
     this.$store.dispatch('todos/GET_USER_BY_TODO')
   }
 };
