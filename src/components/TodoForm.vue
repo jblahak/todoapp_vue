@@ -29,7 +29,6 @@
 import todos from '../api/todos'
 import Cookies from 'js-cookie'
 import store from '../store/index'
-import { mapActions } from 'vuex'
 
 export default {
     name: "TodoForm",
