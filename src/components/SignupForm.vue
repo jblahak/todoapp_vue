@@ -8,7 +8,7 @@
         <b-form-input
             id="input-1"
             v-model="mutableEmail"
-            type="email"
+            type="text"
             placeholder="Enter email"
             required
         ></b-form-input>
@@ -51,17 +51,40 @@ export default {
         }
     },
     methods: {
+        makeToast: function(message) {
+            this.$bvToast.toast(message, {
+                title: 'Error during signup',
+                autoHideDelay: 8000,
+                variant: 'danger',
+                solid: true
+            })
+        },
         login: async function() {
-            const req = await users.loginUser({
+            const reqRegister = await users.signupUser({
                 email: this.mutableEmail,
                 password: this.mutablePassword
             })
-            const verifiedToken = await jwt.verify(req.token, 'secret')
-            const expToken = await dayjs.unix(verifiedToken.exp).format()
-            await Cookies.set('token', req.token, {expires: new Date(expToken)})
-            await this.$store.dispatch('users/STORE_TOKEN', req.token)
-            if (req.status === 200) {
-                this.$router.push('/')
+            if (reqRegister.UserId) {
+                const reqLogin = await users.loginUser({
+                    email: this.mutableEmail,
+                    password: this.mutablePassword
+                })
+                const verifiedToken = await jwt.verify(reqLogin.token, 'secret')
+                const expToken = await dayjs.unix(verifiedToken.exp).format()
+                await Cookies.set('token', reqLogin.token, {expires: new Date(expToken)})
+                await this.$store.dispatch('users/STORE_TOKEN', reqLogin.token)
+                if (reqLogin.status === 200) {
+                    this.$router.push('/')
+                }
+            }
+            if (reqRegister.type === 'password') {
+                this.makeToast('password must contain between 6 and 20 characters and at least one numeric digit, one uppercase and one lowercase letter')
+            }
+            if (reqRegister.type === 'email') {
+                this.makeToast('invalid email format')
+            }
+            if (reqRegister.status === 409) {
+                this.makeToast('user already exists')
             }
         }
     }
