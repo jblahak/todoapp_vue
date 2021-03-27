@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import Login from '../views/Login'
 import Signup from '../views/Signup'
+import PageNotFound from '../views/PageNotFound'
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     name: 'Signup',
     component: Signup,
   },
+  {
+    path: '*',
+    name: 'pageNotFound',
+    component: PageNotFound
+  }
 ];
 
 const router = new VueRouter({
