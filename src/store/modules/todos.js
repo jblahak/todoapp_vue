@@ -45,7 +45,9 @@ const mutations = {
         selectedTodo = await todos.checkTodo(selectedTodo)
         state.todos.splice(index, 1, {...selectedTodo, user: await users.getUserById(selectedTodo.UserId)})
     },
-    postTodo: (state, payload) => {
+    postTodo: async (state, payload) => {
+        const getUser = await users.getUserById(payload.UserId)
+        payload.user = getUser
         state.todos.push(payload)
     }
 }

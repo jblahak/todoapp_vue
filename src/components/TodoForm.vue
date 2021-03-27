@@ -46,6 +46,7 @@ export default {
         postTodo: async function() {
             const req = await todos.postTodo({title: this.handleTodo, token: Cookies.get('token')})
             this.$store.dispatch('todos/POST_TODO', req)
+            this.handleTodo = ''
         }
     }
 }
