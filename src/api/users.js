@@ -18,7 +18,7 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email: user.email, password: user.password})
+            body: JSON.stringify({email: user.email, password: user.password, username: user.username})
         })
         const res = await data.json()
         return await res

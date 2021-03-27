@@ -11,7 +11,7 @@
         class="card-todo"
         v-for="todo in todos"
         :todotext="todo.title"
-        :username="todo.user.email"
+        :username="todo.user.username"
         :date="new Date(todo.updatedAt)"
         :key="todo.id"
         :completed="todo.completed"

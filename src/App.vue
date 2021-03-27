@@ -14,7 +14,7 @@
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown right v-if="user && token && token.isLogged">
               <template #button-content>
-                <em>Hi, {{user.email}}</em>
+                <em>Hi, {{user.username}}</em>
               </template>
               <a class="dropdown-item" @click.prevent="logout">logout</a>
             </b-nav-item-dropdown>

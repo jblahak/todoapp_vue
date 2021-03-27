@@ -4,6 +4,7 @@
     <signup-form
       :password="form.password"
       :email="form.email"
+      :username="form.username"
     />
   </div>
 </template>
@@ -16,7 +17,8 @@ export default {
       return {
         form: {
           password: '',
-          email: ''
+          email: '',
+          username: ''
         },
       }
     },
