@@ -2,7 +2,7 @@
   <div id="app">
     <div>
       <b-navbar toggleable="lg" type="dark" variant="dark">
-        <b-navbar-brand href="#">TodoApp</b-navbar-brand>
+        <router-link class="navbar-brand" to="/">TodoApp</router-link>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -23,7 +23,7 @@
                 <em>Hi</em>
               </template>
               <router-link class="dropdown-item" to="/login">Login</router-link>
-              <b-dropdown-item href="#">Sign up</b-dropdown-item>
+              <router-link class="dropdown-item" to="/signup">Sign up</router-link>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
