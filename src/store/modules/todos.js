@@ -19,6 +19,10 @@ const actions = {
         await dispatch('GET_ALL_TODOS')
         commit('getUserById')
     },
+    POST_TODO: async ({commit}, todo) => {
+        commit('postTodo', await todo)
+        commit('getUserById')
+    },
     CHECK_TODO: ({ commit }, id) => {
         commit('toggleCompleteTodo', id)
     }
@@ -40,6 +44,9 @@ const mutations = {
         const index = state.todos.findIndex( todo => todo.id === selectedTodo.id)
         selectedTodo = await todos.checkTodo(selectedTodo)
         state.todos.splice(index, 1, {...selectedTodo, user: await users.getUserById(selectedTodo.UserId)})
+    },
+    postTodo: (state, payload) => {
+        state.todos.push(payload)
     }
 }
 
