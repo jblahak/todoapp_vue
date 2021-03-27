@@ -12,6 +12,9 @@ const getters = {
 const actions = {
     STORE_TOKEN: ({commit}, token) => {
         commit('token', token)
+    },
+    REMOVE_TOKEN: ({commit}) => {
+        commit('logout')
     }
 }
 
@@ -21,6 +24,9 @@ const mutations = {
             isLogged: true,
             token
         }
+    },
+    logout: (state) => {
+        state.token = null
     }
 }
 

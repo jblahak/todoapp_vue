@@ -16,7 +16,7 @@
               <template #button-content>
                 <em>Hi, {{user.email}}</em>
               </template>
-              <router-link class="dropdown-item" to="/login">logout</router-link>
+              <a class="dropdown-item" @click.prevent="logout">logout</a>
             </b-nav-item-dropdown>
             <b-nav-item-dropdown right v-else>
               <template #button-content>
@@ -63,6 +63,13 @@ export default {
     const logCookie = Cookies.get('token')
     if (logCookie) {
       this.$store.dispatch('users/STORE_TOKEN', logCookie)
+    }
+  },
+  methods: {
+    logout: function() {
+      Cookies.remove('token', {path: ''})
+      const logCookie = Cookies.get('token')
+      logCookie ? null : this.$store.dispatch('users/REMOVE_TOKEN')
     }
   },
   name: 'App'
