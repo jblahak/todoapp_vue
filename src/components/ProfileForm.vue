@@ -16,6 +16,7 @@
     <b-form-group id="input-group-2" label="Username:" label-for="input-2">
         <b-form-input
             id="input-2"
+            type="text"
             v-model="mutableUsername"
             placeholder="Enter a username"
             required
@@ -29,8 +30,8 @@
             required
         ></b-form-input>
     </b-form-group>
-    <b-button variant="danger" @click="save">Cancel</b-button>
-    <b-button variant="success" @click="save">Save</b-button>
+    <b-button variant="danger" @click="cancel">Cancel</b-button>
+    <b-button variant="success" class="ml-2" @click="save">Save</b-button>
   </b-form>
 </template>
 
@@ -43,7 +44,8 @@ export default {
         email: String,
         username: String,
         bio: String,
-        token: String
+        token: String,
+        cancel: Function
     },
     data() {
         return {
@@ -54,8 +56,14 @@ export default {
     },
     methods: {
         save: function() {
-            users.updateBio({token: this.token, bio:this.mutableBio})
-        }
+            users.updateBio({
+                token: this.token,
+                bio:this.mutableBio,
+                username: this.mutableUsername,
+                email: this.mutableEmail
+            })
+            this.$emit('saved', {bio: this.mutableBio, email: this.mutableEmail, username: this.mutableUsername})
+        },
     }
 }
 </script>

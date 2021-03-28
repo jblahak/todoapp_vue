@@ -54,7 +54,11 @@ export default {
                 'Accept': 'application/json',
                 'authorization': `Bearer ${user.token}`
             },
-            body: JSON.stringify({bio: user.bio})
+            body: JSON.stringify({
+                bio: user.bio,
+                username: user.username,
+                email: user.email
+            })
         })
         const res = await data.json()
         return res

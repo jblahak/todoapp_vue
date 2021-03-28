@@ -12,12 +12,14 @@
             <p>Here since : {{createdDate}}</p>
             <b-button variant="primary" @click="openModal">Edit my profile</b-button>
         </b-jumbotron>
-        <b-modal id="modal-form" centered title="Edit my profile">
+        <b-modal id="modal-form" centered hide-footer title="Edit my profile">
             <profile-form 
                 :email="email"
                 :username="username"
                 :bio="bio"
                 :token="token.token"
+                :cancel="cancel"
+                @saved="updateAfterSave"
             />
         </b-modal>
     </div>
@@ -68,12 +70,24 @@ export default {
         }
     },
     methods: {
-        openModal: function() {
+        openModal: function() { // Display user informations in form
             this.username = this.user.username
             this.email = this.user.email
             this.bio = this.user.bio
 
             this.$bvModal.show('modal-form')
+        },
+        cancel: function() { // Cancel possible changes in form
+            this.$bvModal.hide('modal-form')
+            this.username = this.user.username
+            this.email = this.user.email
+            this.bio = this.user.bio
+        },
+        updateAfterSave: function(user) { // Update data for re-render
+            this.$bvModal.hide('modal-form')
+            this.user.username = user.username
+            this.user.email = user.email
+            this.user.bio = user.bio
         }
     }
 }
