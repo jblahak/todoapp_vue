@@ -1,6 +1,3 @@
-import users from '../../api/users'
-import Cookies from 'js-cookie'
-
 const state = {
     token: null
 }

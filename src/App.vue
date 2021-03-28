@@ -17,6 +17,7 @@
                 <em>Hi, {{user.username}}</em>
               </template>
               <a class="dropdown-item" @click.prevent="logout">logout</a>
+              <router-link class="dropdown-item" to="/profile">Profile</router-link>
             </b-nav-item-dropdown>
             <b-nav-item-dropdown right v-else>
               <template #button-content>

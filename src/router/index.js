@@ -6,6 +6,7 @@ import Home from '../views/Home'
 import Login from '../views/Login'
 import Signup from '../views/Signup'
 import PageNotFound from '../views/PageNotFound'
+import Profile from '../views/Profile'
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: Signup,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '*',
