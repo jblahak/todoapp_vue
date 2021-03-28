@@ -22,7 +22,6 @@ import { mapGetters } from 'vuex'
 import users from '../api/users'
 import dayjs from 'dayjs'
 
-import locale from 'dayjs/locale/fr'
 
 export default {
     name: 'Profile',
