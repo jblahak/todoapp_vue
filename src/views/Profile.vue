@@ -13,11 +13,8 @@ import jwt from 'jsonwebtoken'
 import { mapGetters } from 'vuex'
 import users from '../api/users'
 
-// import store from '../store/index'
-
 export default {
     name: 'Profile',
-    // store,
     asyncComputed: {
         ...mapGetters('users', {
             token: 'token'
