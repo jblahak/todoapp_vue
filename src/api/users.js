@@ -45,5 +45,18 @@ export default {
         })
         const res = await data.json()
         return await res
+    },
+    updateBio: async (user) => {
+        const data = await fetch('http://localhost:4443/api/users/user/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization': `Bearer ${user.token}`
+            },
+            body: JSON.stringify({bio: user.bio})
+        })
+        const res = await data.json()
+        return res
     }
 }
