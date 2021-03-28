@@ -10,7 +10,7 @@
             <p>Email : {{user.email}}</p>
             <hr class="my-4">
             <p>Here since : {{createdDate}}</p>
-            <b-button variant="primary" @click="openModal">Edit my profile</b-button>
+            <b-button variant="primary" @click="actionModal('show')">Edit my profile</b-button>
         </b-jumbotron>
         <b-modal id="modal-form" centered hide-footer title="Edit my profile">
             <profile-form 
@@ -18,7 +18,7 @@
                 :username="username"
                 :bio="bio"
                 :token="token.token"
-                :cancel="cancel"
+                :cancel="actionModal"
                 @saved="updateAfterSave"
             />
         </b-modal>
@@ -70,18 +70,12 @@ export default {
         }
     },
     methods: {
-        openModal: function() { // Display user informations in form
+        actionModal: function(action = 'hide') { // Display defaults user informations in form
             this.username = this.user.username
             this.email = this.user.email
             this.bio = this.user.bio
-
-            this.$bvModal.show('modal-form')
-        },
-        cancel: function() { // Cancel possible changes in form
-            this.$bvModal.hide('modal-form')
-            this.username = this.user.username
-            this.email = this.user.email
-            this.bio = this.user.bio
+            if (action === 'show')  this.$bvModal.show('modal-form')
+            else this.$bvModal.hide('modal-form')
         },
         updateAfterSave: function(user) { // Update data for re-render
             this.$bvModal.hide('modal-form')
