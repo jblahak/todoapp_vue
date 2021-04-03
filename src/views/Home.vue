@@ -1,10 +1,5 @@
 <template>
   <div class="home">
-    <section class="container">
-      <todo-form
-        :todo="form"
-      ></todo-form>
-    </section>
     <section v-if="show" class="card-container">
       <card-todo
         class="card-todo"

@@ -1,14 +1,15 @@
 <template>
     <div>
         <header>
-            <h3>{{username}}</h3>
+            <h3>
+                <span></span>
+                {{todotext}}
+            </h3>
         </header>
         <main>
-            <p>{{todotext}}</p>
+            <p>{{username}}</p>
         </main>
         <footer>
-            <button class="btn btn-success" v-if="completed === false" @click="checkTodo">Valider la todo</button>
-            <button class="btn btn-danger" v-else @click="checkTodo">Uncheck</button>
             <p>{{intlDate}}</p>
         </footer>
     </div>
@@ -44,17 +45,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '../scss/main.scss';
+
     div {
-        border: 1px solid #cdcdcd;
-        width: calc((100% / 3) - 20px);
+        width: 100%;
         margin-bottom: 10px;
+        border-radius: $radius;
+        box-shadow: $shadow-primary;
+        padding: 15px;
 
         header {
             box-sizing: border-box;
-            padding: 12px;
 
             h3 {
-                color: #4b6652
+                color: $black;
+                text-align: left;
+                position: relative;
+                padding-left: 15px;
+
+                span {
+                    position: absolute;
+                    height: 6px;
+                    width: 6px;
+                    background-color: $primary;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    margin: auto;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        main {
+            p {
+                text-align: left;
+                color: $black;
+            }
+        }
+
+        footer {
+            p {
+                text-align: right;
+                color: $gray;
+                font-size: 10px;
             }
         }
     }
