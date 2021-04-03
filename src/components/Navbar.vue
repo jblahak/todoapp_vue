@@ -26,6 +26,6 @@ export default {
     nav {
         display: flex;
         justify-content: space-between;
-        padding: 10px;
+        padding: 20px 10px;
     }
 </style>
