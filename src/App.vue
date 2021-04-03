@@ -1,11 +1,18 @@
 <template>
   <div id="app">
-    <div>
-      <navbar/>
+    <div class="app-content">
+      <div class="leftcontent">
+        <side-menu
+          :links="links"
+        />
+      </div>
+      <div class="rightcontent">
+        <navbar/>
+        <transition name="fade">
+          <router-view/>
+        </transition>
+      </div>
     </div>
-    <transition name="fade">
-      <router-view/>
-    </transition>
   </div>
 </template>
 
@@ -16,13 +23,19 @@ import users from './api/users'
 import Cookies from 'js-cookie'
 
 import Navbar from './components/Navbar'
+import SideMenu from './components/SideMenu'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    SideMenu
   },
   data: () => ({
-    tokenAuth: null
+    tokenAuth: null,
+    links: [
+      {title: 'link', icon: 'alarm-fill', isActive: false},
+      {title: 'link2', icon: 'arrow-down-circle-fill', isActive: true}
+    ]
   }),
   computed: {
     ...mapGetters('users', {
@@ -66,21 +79,19 @@ export default {
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-}
+.app-content {
+  display: flex;
+  align-items: center;
 
-nav {
-  .navbar-nav {
-    a {
-      color: white;
-    }
-
-    .dropdown {
-      a {
-        color: #2c3e50;
-      }
-    }
+  .leftcontent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25vw;
+  }
+  .rightcontent {
+    margin-left: 25vw;
+    width: 75vw;
   }
 }
 
