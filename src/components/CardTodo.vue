@@ -7,9 +7,10 @@
             </h3>
         </header>
         <main>
-            <p>{{username}}</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate hic quam temporibus cumque, nulla maiores vitae doloribus, cupiditate explicabo at nisi architecto nemo officia repudiandae atque, placeat animi facere dicta.</p>
         </main>
         <footer>
+            <p>created by {{username}}</p>
             <p>{{intlDate}}</p>
         </footer>
     </div>
@@ -53,6 +54,7 @@ export default {
         border-radius: $radius;
         box-shadow: $shadow-primary;
         padding: 15px;
+        background-color: white;
 
         header {
             box-sizing: border-box;
@@ -62,11 +64,12 @@ export default {
                 text-align: left;
                 position: relative;
                 padding-left: 15px;
+                font-size: $h3;
 
                 span {
                     position: absolute;
-                    height: 6px;
-                    width: 6px;
+                    height: 4px;
+                    width: 4px;
                     background-color: $primary;
                     top: 0;
                     bottom: 0;

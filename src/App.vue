@@ -92,6 +92,7 @@ export default {
   .rightcontent {
     margin-left: 25vw;
     width: 75vw;
+    overflow-x: hidden;
   }
 }
 
