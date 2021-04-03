@@ -22,6 +22,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
 </style>

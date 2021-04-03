@@ -1,5 +1,5 @@
 <template>
-    <a href="#" @click.prevent>
+    <a href="#" @click.prevent="clicked">
         {{text}}
         <b-icon-chevron-down></b-icon-chevron-down>
     </a>
@@ -10,17 +10,28 @@ export default {
     name: "LinkDropdown",
     props: {
         text: String
+    },
+    methods: {
+        clicked: function() {
+            this.$emit('clicked')
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+    @import '../scss/main.scss';
+
     a {
         font-weight: bold;
-        color: black;
+        color: $black;
 
         &:visited {
-            color: black;
+            color: $black;
+        }
+
+        &:hover {
+            color: $black;
         }
     }
 </style>
