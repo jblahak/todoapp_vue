@@ -1,34 +1,7 @@
 <template>
   <div id="app">
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="dark">
-        <router-link class="navbar-brand" to="/">TodoApp</router-link>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <router-link to="/">Home</router-link>
-          </b-navbar-nav>
-
-          <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown right v-if="user && token && token.isLogged">
-              <template #button-content>
-                <em>Hi, {{user.username}}</em>
-              </template>
-              <a class="dropdown-item" @click.prevent="logout">logout</a>
-              <router-link class="dropdown-item" to="/profile">Profile</router-link>
-            </b-nav-item-dropdown>
-            <b-nav-item-dropdown right v-else>
-              <template #button-content>
-                <em>Hi</em>
-              </template>
-              <router-link class="dropdown-item" to="/login">Login</router-link>
-              <router-link class="dropdown-item" to="/signup">Sign up</router-link>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
+      <navbar/>
     </div>
     <transition name="fade">
       <router-view/>
@@ -42,7 +15,12 @@ import { mapGetters } from 'vuex'
 import users from './api/users'
 import Cookies from 'js-cookie'
 
+import Navbar from './components/Navbar'
+
 export default {
+  components: {
+    Navbar
+  },
   data: () => ({
     tokenAuth: null
   }),
