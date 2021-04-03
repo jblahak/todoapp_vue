@@ -25,6 +25,7 @@ export default {
     a {
         font-weight: bold;
         color: $black;
+        text-transform: capitalize;
 
         &:visited {
             color: $black;
@@ -32,6 +33,7 @@ export default {
 
         &:hover {
             color: $black;
+            text-decoration: none;
         }
     }
 </style>

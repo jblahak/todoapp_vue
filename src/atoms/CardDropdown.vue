@@ -1,14 +1,19 @@
 <template>
   <div class="dropdown-card" :class="{active}">
       <div v-for="link in links" :key="link.title">
-          <a @click.prevent> {{link.title}} </a>
+          <link-btn :message="link.title" />
       </div>
   </div>
 </template>
 
 <script>
+import LinkBtn from './LinkBtn'
+
 export default {
     name: 'CardDropdown',
+    components: {
+        LinkBtn
+    },
     props: {
         links: Array,
         active: Boolean
@@ -41,10 +46,6 @@ export default {
             transform: translateY(0);
             opacity: 1;
             visibility: visible;
-        }
-
-        a {
-            margin: 2.5px 0
         }
     }
 </style>
