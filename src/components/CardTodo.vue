@@ -10,7 +10,7 @@
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate hic quam temporibus cumque, nulla maiores vitae doloribus, cupiditate explicabo at nisi architecto nemo officia repudiandae atque, placeat animi facere dicta.</p>
         </main>
         <footer>
-            <p>created by {{username}}</p>
+            <p>Created by {{username}}</p>
             <p>{{intlDate}}</p>
         </footer>
     </div>
@@ -83,14 +83,15 @@ export default {
         main {
             p {
                 text-align: left;
-                color: $black;
+                color: $gray;
+                font-weight: 500;
             }
         }
 
         footer {
             p {
                 text-align: right;
-                color: $gray;
+                color: $gray-light;
                 font-size: 10px;
             }
         }
