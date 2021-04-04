@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown-card" :class="{active}">
-      <div v-for="link in links" :key="link.title">
-          <link-btn :message="link.title" />
+      <div v-for="link in links" :key="link.title" @click="clicked">
+          <link-btn :message="link.title" :route="link.route"/>
       </div>
   </div>
 </template>
@@ -18,10 +18,10 @@ export default {
         links: Array,
         active: Boolean
     },
-    mounted() {
-        const card = document.querySelector('.dropdown-card')
-        const cardHeight = card.offsetHeight
-        card.style = `bottom: -${cardHeight+10}px`
+    methods: {
+        clicked: function() {
+            this.$emit('clicked')
+        }
     }
 }
 </script>

@@ -4,13 +4,26 @@
           <img src="../assets/logo.png">
       </div>
       <div class="navigation">
-          <link-icon
-            v-for="link in links"
-            :title="link.title"
-            :icon="link.icon"
-            :key="link.title"
-            :isActive="link.isActive"
-          />
+            <div class="top-navigation">
+                <link-icon
+                    v-for="link in links"
+                    :title="link.title"
+                    :icon="link.icon"
+                    :key="link.title"
+                    :isActive="link.isActive"
+                    :route="link.route"
+                />
+            </div>
+            <div class="bottom-navigation">
+                <link-icon
+                    v-for="link in bottomLinks"
+                    :title="link.title"
+                    :icon="link.icon"
+                    :key="link.title"
+                    :isActive="link.isActive"
+                    :route="link.route"
+                />
+            </div>
       </div>
   </nav>
 </template>
@@ -21,7 +34,8 @@ export default {
   components: { LinkIcon },
     name: 'SideMenu',
     props: {
-        links: Array
+        links: Array,
+        bottomLinks: Array
     }
 }
 </script>
@@ -45,6 +59,14 @@ export default {
                 max-height: 100%;
                 max-width: 100%;
             }
+        }
+
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: calc(100vh - 135px);
+            padding-bottom: 50px;
         }
     }
 </style>

@@ -1,14 +1,15 @@
 <template>
-  <a href="#" @click.prevent>
+  <router-link :to="route" @click.prevent>
       {{message}}
-  </a>
+  </router-link>
 </template>
 
 <script>
 export default {
     name: 'LinkBtn',
     props: {
-        message: String
+        message: String,
+        route: String
     }
 }
 </script>

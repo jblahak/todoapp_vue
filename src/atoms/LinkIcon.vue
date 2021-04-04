@@ -1,9 +1,9 @@
 <template>
   <div>
-      <a href="#" @click.prevent :class="{isActive}">
+      <router-link :to="route" @click.prevent :class="{isActive}">
           <b-icon :icon="icon"></b-icon>
           {{title}}
-      </a>
+      </router-link>
     </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
     props: {
         title: String,
         icon: String,
+        route: String,
         isActive: Boolean
     },
 
@@ -33,7 +34,7 @@ export default {
         text-transform: capitalize;
 
         &.isActive {
-            color: $black;
+            color: $black !important;
 
             &:hover {
                 color: $black;

@@ -2,11 +2,12 @@
     <div class="menu-dropdown">
         <link-dropdown
             :text="text"
-            @clicked="openMenu()"
+            @clicked="toggleMenu(), positionCardDropdown()"
         />
         <card-dropdown
             :links="links"
             :active="isMenuActive"
+            @clicked="toggleMenu"
         />
     </div>
 </template>
@@ -31,8 +32,13 @@ export default {
         LinkDropdown
     },
     methods: {
-        openMenu: function() {
+        toggleMenu: function() {
             this.isMenuActive = !this.isMenuActive
+        },
+        positionCardDropdown: () => {
+            const card = document.querySelector('.dropdown-card')
+            const cardHeight = card.offsetHeight
+            card.style = `bottom: -${cardHeight+10}px`
         }
     }
 }
