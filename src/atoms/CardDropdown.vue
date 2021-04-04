@@ -41,6 +41,8 @@ export default {
         transform: translateY(-20px);
         opacity: 0;
         visibility: hidden;
+        z-index: 1;
+        box-shadow: $shadow-primary;
 
         &.active {
             transform: translateY(0);

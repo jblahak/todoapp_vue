@@ -50,7 +50,7 @@ export default {
 
     div {
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 35px;
         border-radius: $radius;
         box-shadow: $shadow-primary;
         padding: 15px;
