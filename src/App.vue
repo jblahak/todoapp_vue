@@ -46,28 +46,6 @@ export default {
       ]
     }
   },
-  computed: {
-    ...mapGetters('users', {
-      token: 'token'
-    }),
-  },
-  asyncComputed: {
-    user () {
-      if (this.token && this.token.isLogged) {
-        const verifiedToken = jwt.verify(this.token.token, 'secret')
-        if (verifiedToken) {
-          const user = users.getUser(this.token.token)
-          return user
-        }
-      }
-    }
-  },
-  mounted() {
-    const logCookie = Cookies.get('token')
-    if (logCookie) {
-      this.$store.dispatch('users/STORE_TOKEN', logCookie)
-    }
-  },
   methods: {
     logout: function() {
       Cookies.remove('token', {path: ''})
