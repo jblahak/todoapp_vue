@@ -70,7 +70,6 @@ export default {
   },
   methods: {
     logout: function() {
-      console.log('ok')
       Cookies.remove('token', {path: ''})
       const logCookie = Cookies.get('token')
       logCookie ? null : this.$store.dispatch('users/REMOVE_TOKEN')
