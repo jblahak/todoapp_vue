@@ -7,7 +7,7 @@
             </h3>
         </header>
         <main>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate hic quam temporibus cumque, nulla maiores vitae doloribus, cupiditate explicabo at nisi architecto nemo officia repudiandae atque, placeat animi facere dicta.</p>
+            <p>{{description}}</p>
         </main>
         <footer>
             <p>Created by {{username}}</p>
@@ -27,7 +27,8 @@ export default {
     username: String,
     todotext: String,
     completed: Boolean,
-    date: Date
+    date: Date,
+    description: String
   },
   computed: {
     intlDate: function() {

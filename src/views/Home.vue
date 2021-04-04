@@ -2,13 +2,17 @@
   <div class="home">
     <board-task 
       :show="show"
-      :todos="todos"
+      :todos="todos.openTodos"
       :title="'To do'"
     />
     <board-task
+      :show="show"
+      :todos="todos.doingTodos"
       :title="'In progress'"
     />
     <board-task
+    :show="show"
+      :todos="todos.closedTodos"
       :title="'Completed'"
     />
   </div>

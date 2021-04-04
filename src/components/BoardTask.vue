@@ -20,10 +20,14 @@
                 :todotext="todo.title"
                 :username="todo.user.username"
                 :date="new Date(todo.updatedAt)"
+                :description="todo.description"
                 :key="todo.id"
                 :completed="todo.completed"
                 @checked="checkTodo(todo)"
             />
+        </section>
+        <section v-if="show && todos.length === 0" class="card-container">
+            <p>Empty</p>
         </section>
         <section v-else class="card-container">
             <p>Loading ...</p>

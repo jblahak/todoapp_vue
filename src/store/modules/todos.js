@@ -3,17 +3,27 @@ import users from '../../api/users'
 
 const state = {
     todos: [],
+    openTodos: [],
+    doingTodos: [],
+    closedTodos:[],
     show: false
 }
 
 const getters = {
-    todos: state => state.todos,
+    todos: state => {
+        return {
+            openTodos: state.openTodos,
+            doingTodos: state.doingTodos,
+            closedTodos: state.closedTodos
+        }
+    },
     show: state => state.show
 }
 
 const actions = {
     GET_ALL_TODOS: async ({ commit }) => {
         commit('getTodos', await todos.getTodos(state))
+        commit('sortTodos')
     },
     GET_USER_BY_TODO: async({commit, dispatch}) => {
         await dispatch('GET_ALL_TODOS')
@@ -49,6 +59,12 @@ const mutations = {
         const getUser = await users.getUserById(payload.UserId)
         payload.user = getUser
         state.todos.push(payload)
+    },
+    sortTodos: async (state) => {
+        const todos = await state.todos
+        state.openTodos = todos.filter(todo => todo.completed === false && todo.doing === false)
+        state.doingTodos = todos.filter(todo => todo.completed === false && todo.doing === true)
+        state.closedTodos = todos.filter(todo => todo.completed === true && todo.doing === false)
     }
 }
 
