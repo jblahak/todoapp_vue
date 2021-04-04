@@ -7,12 +7,12 @@
           <menu-dropdown
             v-if="user"
             :links="linksUser"
-            :text="'profile'"
+            :text="user.username"
           ></menu-dropdown>
           <menu-dropdown
             v-else
             :links="links"
-            :text="'profile'"
+            :text="'Hi'"
           ></menu-dropdown>
       </div>
   </nav>
@@ -20,6 +20,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import jwt from 'jsonwebtoken'
+import Cookies from 'js-cookie'
+
+import users from '../api/users'
+
 import MenuDropdown from '../molecules/MenuDropdown'
 
 export default {
@@ -37,8 +42,23 @@ export default {
     }),
     asyncComputed: {
         ...mapGetters('users', {
-            user: 'token'
-        })
+            token: 'token'
+        }),
+        user: function () {
+            if (this.token && this.token.isLogged) {
+                const verifiedToken = jwt.verify(this.token.token, 'secret')
+                if (verifiedToken) {
+                    const user = users.getUser(this.token.token)
+                    return user
+                }
+            }
+        }
+    },
+    mounted() {
+        const logCookie = Cookies.get('token')
+        if (logCookie) {
+            this.$store.dispatch('users/STORE_TOKEN', logCookie)
+        }
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <router-link :to="route" @click.prevent :class="{isActive}">
+  <div @click="clicked">
+      <router-link :to="route" :class="{isActive}">
           <b-icon :icon="icon"></b-icon>
           {{title}}
       </router-link>
@@ -16,7 +16,11 @@ export default {
         route: String,
         isActive: Boolean
     },
-
+    methods: {
+        clicked: function(){
+            this.$emit('clicked')
+        }
+    }
 }
 </script>
 

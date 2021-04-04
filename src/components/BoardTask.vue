@@ -85,7 +85,7 @@ export default {
                 position: absolute;
                 top: 0;
                 bottom: 0;
-                right: 10px;
+                right: 0;
                 margin: auto;
             }
         }

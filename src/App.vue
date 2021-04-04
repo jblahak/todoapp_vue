@@ -31,19 +31,21 @@ export default {
     Navbar,
     SideMenu
   },
-  data: () => ({
-    tokenAuth: null,
-    links: [
-      {title: 'Overview', icon: 'house', route: '/', isActive: true},
-      {title: 'Projects', icon: 'folder', route: '/projects', isActive: false},
-      {title: 'Stats', icon: 'graph-up', route: '/stats', isActive: false},
-      {title: 'Calendar', icon: 'calendar2-date', route: '/calendar', isActive: false}
-    ],
-    bottomLinks: [
-      {title: 'Settings', icon: 'gear-wide-connected', route: '/settings', isActive: false},
-      {title: 'Logout', icon: 'box-arrow-left', route: '/logout', isActive: false}
-    ]
-  }),
+  data() {
+    return {
+      tokenAuth: null,
+      links: [
+        {title: 'Overview', icon: 'house', route: '/', isActive: true},
+        {title: 'Projects', icon: 'folder', route: '/projects', isActive: false},
+        {title: 'Stats', icon: 'graph-up', route: '/stats', isActive: false},
+        {title: 'Calendar', icon: 'calendar2-date', route: '/calendar', isActive: false}
+      ],
+      bottomLinks: [
+        {title: 'Settings', icon: 'gear-wide-connected', route: '/settings', isActive: false},
+        {title: 'Logout', icon: 'box-arrow-left', route: '', isActive: false, method: this.logout}
+      ]
+    }
+  },
   computed: {
     ...mapGetters('users', {
       token: 'token'
@@ -68,6 +70,7 @@ export default {
   },
   methods: {
     logout: function() {
+      console.log('ok')
       Cookies.remove('token', {path: ''})
       const logCookie = Cookies.get('token')
       logCookie ? null : this.$store.dispatch('users/REMOVE_TOKEN')

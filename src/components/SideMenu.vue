@@ -15,14 +15,23 @@
                 />
             </div>
             <div class="bottom-navigation">
-                <link-icon
-                    v-for="link in bottomLinks"
-                    :title="link.title"
-                    :icon="link.icon"
-                    :key="link.title"
-                    :isActive="link.isActive"
-                    :route="link.route"
-                />
+                <div v-for="link in bottomLinks" :key="link.title">
+                    <link-icon
+                        v-if="link.method"
+                        :title="link.title"
+                        :icon="link.icon"
+                        :isActive="link.isActive"
+                        :route="link.route"
+                        @clicked="link.method"
+                    />
+                    <link-icon
+                        v-else
+                        :title="link.title"
+                        :icon="link.icon"
+                        :isActive="link.isActive"
+                        :route="link.route"
+                    />
+                </div>
             </div>
       </div>
   </nav>
