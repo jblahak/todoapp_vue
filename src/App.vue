@@ -18,9 +18,6 @@
 </template>
 
 <script>
-import jwt from 'jsonwebtoken'
-import { mapGetters } from 'vuex'
-import users from './api/users'
 import Cookies from 'js-cookie'
 
 import Navbar from './components/Navbar'
