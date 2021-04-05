@@ -94,6 +94,10 @@ export default {
                 text-align: right;
                 color: $gray-light;
                 font-size: 10px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
     }

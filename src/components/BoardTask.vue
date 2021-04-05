@@ -3,7 +3,7 @@
         <h3>
             {{title}}
             <notification-number
-                :count="todos ? todos.length : 0"
+                :count="todos ? todos.length : null"
                 :bgColor="bgColor"
                 :textColor="textColor"
             />
@@ -13,7 +13,7 @@
             :bgColor="bgColor"
             :textColor="textColor"
         />
-        <section v-if="show" class="card-container">
+        <section v-if="show && todos.length > 0" class="card-container">
             <card-todo
                 class="card-todo"
                 v-for="todo in todos"
@@ -26,7 +26,7 @@
                 @checked="checkTodo(todo)"
             />
         </section>
-        <section v-if="show && todos.length === 0" class="card-container">
+        <section v-else-if="todos.length === 0 && show" class="card-container">
             <p>Empty</p>
         </section>
         <section v-else class="card-container">
