@@ -1,8 +1,6 @@
 <template>
   <nav>
-      <div class="searchbar">
-
-      </div>
+      <search-bar/>
       <div class="right-content">
           <menu-dropdown
             v-if="user"
@@ -26,10 +24,12 @@ import Cookies from 'js-cookie'
 import users from '../api/users'
 
 import MenuDropdown from '../molecules/MenuDropdown'
+import SearchBar from '../atoms/SearchBar'
 
 export default {
     components: {
-        MenuDropdown
+        MenuDropdown,
+        SearchBar
     },
     data: () => ({
         links: [
@@ -67,6 +67,6 @@ export default {
     nav {
         display: flex;
         justify-content: space-between;
-        padding: 20px 10px;
+        padding: 20px;
     }
 </style>

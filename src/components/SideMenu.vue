@@ -60,7 +60,7 @@ export default {
 
         .logo-container {
             height: 45px;
-            margin: 40px 0;
+            margin: 10px 0 40px;
             padding: 0 30px;
 
             img {
