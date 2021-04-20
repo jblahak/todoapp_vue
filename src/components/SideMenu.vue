@@ -57,6 +57,7 @@ export default {
         height: 100vh;
         border-right: 1px solid $gray-border;
         padding: 10px 0;
+        box-sizing: initial;
 
         .logo-container {
             height: 45px;
