@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../molecules/LoginForm'
 
 export default {
     data() {

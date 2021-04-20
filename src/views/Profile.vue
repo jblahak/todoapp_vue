@@ -31,7 +31,7 @@ import jwt from 'jsonwebtoken'
 import { mapGetters } from 'vuex'
 import users from '../api/users'
 import dayjs from 'dayjs'
-import ProfileForm from '../components/ProfileForm'
+import ProfileForm from '../molecules/ProfileForm'
 
 
 export default {

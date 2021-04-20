@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SignupForm from '../components/SignupForm'
+import SignupForm from '../molecules/SignupForm'
 
 export default {
     data() {

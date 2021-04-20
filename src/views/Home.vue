@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    
     <board-task 
       :show="show"
       :todos="todos.openTodos"
@@ -21,7 +22,6 @@
 <script>
 import store from '@/store/index'
 import CardTodo from '../components/CardTodo.vue'
-import TodoForm from '../components/TodoForm'
 import BoardTask from '../components/BoardTask'
 import { mapGetters } from "vuex"
 
@@ -35,7 +35,6 @@ export default {
   },
   components: {
     CardTodo,
-    TodoForm,
     BoardTask
   },
   store,
