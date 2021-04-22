@@ -12,7 +12,7 @@ export default {
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${todo.token}`
             },
-            body: JSON.stringify({title: todo.title})
+            body: JSON.stringify({title: todo.title, description: todo.description})
         })
         const res = await data.json()
         return await res

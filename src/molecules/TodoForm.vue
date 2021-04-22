@@ -1,11 +1,11 @@
 <template>
   <div>
-    <form @submit.prevent="postTodo">
+    <form @submit.prevent>
         <div>
-            <text-input class="title" :name="'title'" :placeholder="'Title'"/>
-            <text-area-icon :name="'description'" :icon="'justify-left'" :placeholder="'Description'"/>
-            <div class="btnForm">
-                <link-btn :message="'Add task'" :route="'go'"/>
+            <text-input class="title" :name="'title'" :placeholder="'Title'" @update="handleTitle"/>
+            <text-area-icon :name="'description'" :icon="'justify-left'" :placeholder="'Description'" @update="handleDescription"/>
+            <div class="btnForm" @click="postTodo">
+                <link-btn :message="'Add task'" :route="''"/>
             </div>
         </div>
     </form>
@@ -20,23 +20,27 @@ import store from '../store/index'
 import TextInput from '../atoms/TextInput'
 import TextAreaIcon from '../atoms/TextAreaIcon.vue'
 import LinkBtn from '../atoms/LinkBtn.vue'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "TodoForm",
-    props: {
-        todo: String
-    },
     store,
-    data() {
-        return {
-            handleTodo: this.todo
-        }
+    computed: {
+        ...mapGetters('todos',{
+            title: 'title',
+            description: 'description'
+        })
     },
     methods: {
         postTodo: async function() {
-            const req = await todos.postTodo({title: this.handleTodo, token: Cookies.get('token')})
+            const req = await todos.postTodo({title: this.title, description: this.description, token: Cookies.get('token')})
             this.$store.dispatch('todos/POST_TODO', req)
-            this.handleTodo = ''
+        },
+        handleTitle: function(e) {
+            this.$store.dispatch('todos/STORE_TITLE', e)
+        },
+        handleDescription: function(e) {
+            this.$store.dispatch('todos/STORE_DESCRIPTION', e)
         }
     },
     components: {

@@ -1,6 +1,15 @@
 <template>
     <div :class="{focus: this.toggle}">
-        <input type="text" :name="name" :id="name" :placeholder="placeholder" @focus="toggleFocus" @blur="toggleFocus" autocomplete="off">
+        <input 
+            type="text" 
+            :name="name" 
+            :id="name" 
+            :placeholder="placeholder" 
+            @focus="toggleFocus" 
+            @blur="toggleFocus" 
+            autocomplete="off"
+            v-model="text"
+        >
     </div>
 </template>
 
@@ -8,7 +17,8 @@
 export default {
     name: 'TextInput',
     data: () => ({
-        toggle: false
+        toggle: false,
+        text: ''
     }),
     props: {
         name: String,
@@ -16,6 +26,11 @@ export default {
     },
     methods: {
         toggleFocus: function() {this.toggle = !this.toggle}
+    },
+    watch: {
+        text: function(newValue, oldValue) {
+            this.$emit('update', newValue)
+        }
     }
 }
 </script>

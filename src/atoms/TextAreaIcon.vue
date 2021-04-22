@@ -8,6 +8,7 @@
             :id="name" 
             @focus="toggleFocus" 
             @blur="toggleFocus"
+            v-model="text"
         >
         </textarea>
     </div>
@@ -17,7 +18,8 @@
 export default {
     name:'TextAreaIcon',
     data: () => ({
-        toggle: false
+        toggle: false,
+        text: ''
     }),
     props: {
         icon: String,
@@ -26,6 +28,11 @@ export default {
     },
     methods: {
         toggleFocus: function() {this.toggle = !this.toggle}
+    },
+    watch: {
+        text: function(newValue, oldValue) {
+            this.$emit('update', newValue)
+        }
     }
 }
 </script>

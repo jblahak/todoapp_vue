@@ -6,7 +6,9 @@ const state = {
     openTodos: [],
     doingTodos: [],
     closedTodos:[],
-    show: false
+    show: false,
+    title: '',
+    description: ''
 }
 
 const getters = {
@@ -17,7 +19,9 @@ const getters = {
             closedTodos: state.closedTodos
         }
     },
-    show: state => state.show
+    show: state => state.show,
+    title: state => state.title,
+    description: state => state.description
 }
 
 const actions = {
@@ -35,6 +39,12 @@ const actions = {
     },
     CHECK_TODO: ({ commit }, id) => {
         commit('toggleCompleteTodo', id)
+    },
+    STORE_TITLE: ({commit}, payload) => {
+        commit('storeTitle', payload)
+    },
+    STORE_DESCRIPTION: ({commit}, payload) => {
+        commit('storeDescription', payload)
     }
 }
 
@@ -65,6 +75,12 @@ const mutations = {
         state.openTodos = todos.filter(todo => todo.completed === false && todo.doing === false)
         state.doingTodos = todos.filter(todo => todo.completed === false && todo.doing === true)
         state.closedTodos = todos.filter(todo => todo.completed === true && todo.doing === false)
+    },
+    storeTitle: (state, payload) => {
+        state.title = payload
+    },
+    storeDescription: (state, payload) => {
+        state.description = payload
     }
 }
 
