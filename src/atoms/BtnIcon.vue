@@ -1,5 +1,5 @@
 <template>
-  <div :style="`background-color: ${bgColor}; color: ${textColor}`">
+  <div :style="`background-color: ${bgColor}; color: ${textColor}`" @click="clicked">
       <b-icon :icon="icon"></b-icon>
   </div>
 </template>
@@ -11,6 +11,9 @@ export default {
         icon: String,
         bgColor: String,
         textColor: String
+    },
+    methods: {
+        clicked: function() {this.$emit('clicked')}
     }
 }
 </script>

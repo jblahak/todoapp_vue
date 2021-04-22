@@ -1,11 +1,11 @@
 <template>
-    <div class="modal-container">
+    <div class="modal-container" :class="{open: this.open}">
         <div class="modal">
             <header>
                 <h3>
                     {{title}}
                 </h3>
-                <b-icon icon="x" scale="2"></b-icon>
+                <b-icon icon="x" scale="2" @click="clicked"></b-icon>
             </header>
             <main>
                 <slot name="main"></slot>
@@ -21,7 +21,13 @@
 export default {
     name: 'Modal',
     props: {
-        title: String
+        title: String,
+        open: Boolean
+    },
+    methods: {
+        clicked: function() {
+            this.$emit('clicked')
+        }
     }
 }
 </script>
@@ -38,8 +44,23 @@ export default {
             bottom: 0;
             left: 0;
             background-color: $black;
-            opacity: $layout-opacity;
+            opacity: 0;
+            visibility: hidden;
             z-index: 99;
+            transition: opacity .5s ease-in-out;
+        }
+
+        &.open {
+            &::before {
+                opacity: $layout-opacity;
+                visibility: visible;
+            }
+
+            .modal {
+                transform: translate(-50%, -50%);
+                visibility: visible;
+                opacity: 1;
+            }
         }
 
         .modal {
@@ -52,9 +73,11 @@ export default {
             min-height: 250px;
             height: auto;
             width: 55%;
-            opacity: 1;
+            visibility: hidden;
+            opacity: 0;
             background-color: white;
             border-radius: $radius;
+            transition: all .5s ease-in-out;
 
             header {
                 min-height: 70px;

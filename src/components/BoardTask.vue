@@ -12,6 +12,7 @@
             :icon="icon"
             :bgColor="bgColor"
             :textColor="textColor"
+            @clicked="clicked"
         />
         <section v-if="show && todos.length > 0" class="card-container">
             <card-todo
@@ -62,7 +63,8 @@ export default {
         }
     },
     methods: {
-        checkTodo: function(todo) {this.$store.dispatch('todos/CHECK_TODO', todo)}
+        checkTodo: function(todo) {this.$store.dispatch('todos/CHECK_TODO', todo)},
+        clicked: function() {this.$emit('clicked')}
     },
 }
 </script>

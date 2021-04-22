@@ -1,10 +1,14 @@
 <template>
   <div class="home">
-    
+    <modal-form-tasks
+      :open="isOpen"
+      @clicked="toggle"
+    />
     <board-task 
       :show="show"
       :todos="todos.openTodos"
       :title="'To do'"
+      @clicked="toggle"
     />
     <board-task
       :show="show"
@@ -12,7 +16,7 @@
       :title="'In progress'"
     />
     <board-task
-    :show="show"
+      :show="show"
       :todos="todos.closedTodos"
       :title="'Completed'"
     />
@@ -24,6 +28,7 @@ import store from '@/store/index'
 import CardTodo from '../components/CardTodo.vue'
 import BoardTask from '../components/BoardTask'
 import { mapGetters } from "vuex"
+import ModalFormTasks from '../components/ModalFormTasks'
 
 export default {
 
@@ -31,11 +36,13 @@ export default {
   data() {
     return{
       form: '',
+      isOpen: false
     }
   },
   components: {
     CardTodo,
-    BoardTask
+    BoardTask,
+    ModalFormTasks
   },
   store,
   computed: {
@@ -46,6 +53,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch('todos/GET_USER_BY_TODO')
+  },
+  methods: {
+    toggle: function() {this.isOpen = !this.isOpen}
   }
 };
 </script>
