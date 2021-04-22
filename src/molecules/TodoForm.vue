@@ -1,27 +1,14 @@
 <template>
   <div>
-      <b-form @submit.prevent="postTodo">
-          <b-form-group
-            label="Add a todo"
-            description="What's new today ?"
-            label-for="addTodo"
-            
-          >
-          <div class="d-flex justify-content-between">
-               <b-form-input
-                    id="addTodo"
-                    v-model="handleTodo"
-                    type="text"
-                    placeholder="..."
-                    required
-                ></b-form-input>
-                <button class="btn btn-primary" type="submit">
-                    Add task
-                </button>
-          </div>
-             
-          </b-form-group>
-      </b-form>
+    <form @submit.prevent="postTodo">
+        <div>
+            <text-input class="title" :name="'title'" :placeholder="'Title'"/>
+            <text-area-icon :name="'description'" :icon="'justify-left'" :placeholder="'Description'"/>
+            <div class="btnForm">
+                <link-btn :message="'Add task'" :route="'go'"/>
+            </div>
+        </div>
+    </form>
   </div>
 </template>
 
@@ -29,6 +16,10 @@
 import todos from '../api/todos'
 import Cookies from 'js-cookie'
 import store from '../store/index'
+
+import TextInput from '../atoms/TextInput'
+import TextAreaIcon from '../atoms/TextAreaIcon.vue'
+import LinkBtn from '../atoms/LinkBtn.vue'
 
 export default {
     name: "TodoForm",
@@ -47,13 +38,32 @@ export default {
             this.$store.dispatch('todos/POST_TODO', req)
             this.handleTodo = ''
         }
+    },
+    components: {
+        TextInput,
+        TextAreaIcon,
+        LinkBtn,
     }
 }
 </script>
 
 <style scoped lang="scss">
-    .btn {
-        width: 150px;
-        margin-left: 20px;
+    form {
+        .title {
+            width: 70%;
+            margin-bottom: 20px;
+        }
+
+
+        .btnForm {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+
+            button {
+                width: 50%;
+            }
+        }
     }
 </style>

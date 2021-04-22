@@ -1,7 +1,9 @@
 <template>
-  <router-link :to="route" @click.prevent>
-      {{message}}
-  </router-link>
+    <button>
+        <router-link :to="route" @click.prevent>
+            {{message}}
+        </router-link>
+    </button>
 </template>
 
 <script>
@@ -16,26 +18,34 @@ export default {
 
 <style lang="scss" scoped>
     @import '../scss/main.scss';
-    
-    a {
-        font-weight: bold;
-        text-transform: capitalize;
-        color: $primary;
-        background-color: $primary-light;
+
+    button {
         display: block;
-        box-sizing: border-box;
-        padding: 10px;
-        width: 80%;
-        margin: 5px auto;
-        border-radius: $radius;
+        width: 100%;
+        background-color: transparent;
+        border: 0;
+        padding: 0;
 
-        &:visited {
+        a {
+            font-weight: bold;
+            text-transform: capitalize;
             color: $primary;
-        }
+            background-color: $primary-light;
+            display: block;
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+            margin: 5px auto;
+            border-radius: $radius;
 
-        &:hover {
-            color: $primary;
-            text-decoration: none;
+            &:visited {
+                color: $primary;
+            }
+
+            &:hover {
+                color: $primary;
+                text-decoration: none;
+            }
         }
     }
 </style>
